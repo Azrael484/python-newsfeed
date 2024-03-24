@@ -12,7 +12,7 @@ class Post(Base):
 	user_id = Column(Integer, ForeignKey('users.id'))
 	created_at = Column(DateTime, default=datetime.now)
 	updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
-	vote_count = column_property(id, 
+	vote_count = column_property(
 		select(func.count(Vote.id)).select_from(Vote).where(Vote.post_id == id)
 	)
 	# dynamic properties generated when a query for a given post is made
